@@ -47,3 +47,10 @@ new  (<session_name> create a new TMUX session)  session  (display the current s
 goto            (<name> change tmux sessions)    ls              (list all available tmuxers)  
 open                    (open from list dialog)  set              (set current TMUX session)
 ```
+
+The signatures of the functions:
+
+```
+fd2_define_command <cmd name> "<top level help text>"
+fd2_define_subcommand <cmd name> <sub cmd name> <function to invoke> "<sub cmd help text>"
+```
