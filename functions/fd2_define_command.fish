@@ -1,4 +1,5 @@
 function fd2_define_command -a prefix_name summary -d "create a command prefix"
+    trace fd2_define_command $prefix_name
     __fd2_define_command $prefix_name $summary
     __fd2_define_command_completion $prefix_name $summary
     __fd2_define_command_dispatcher $prefix_name
