@@ -1,7 +1,29 @@
-function __fd2_define_command  -a prefix_name summary -d "create a command prefix"
-  eval "set -e _subcommand_names_$prefix_name"
-  if not contains $prefix_name $_command_names
-      set -U _command_names $_command_names $prefix_name
-      eval "set -U _command_summary_$prefix_name '$summary'"
+function __fd2_define_command -d "create a command prefix"
+    set -l prefix ''
+    set -l desc ''
+
+    trace fd2_define_command $prefix >&2
+
+    getopts $argv | while read -l key value
+        switch $key
+            case p prefix
+                set prefix $value
+            case d desc
+                set desc $value
+        end
+    end
+    if test -z $prefix
+      error "prefix must be set (use the -p option)" >&2
+      return 1
+    end
+    if test -z $desc
+      error "description must be set (use the -d option)" >&2
+      return 1
+    end
+
+  eval "set -e _subcommand_names_$prefix"
+  if not contains $prefix $_command_names
+      set -U _command_names $_command_names $prefix
+      eval "set -U _command_summary_$prefix '$desc'"
   end
 end

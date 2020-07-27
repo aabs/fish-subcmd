@@ -10,7 +10,7 @@ function __fd2_define_command_dispatcher -a prefix -d "creates a function to dis
 
         set -l subcmds "_subcommand_names_$prefix"
         set -l sub $argv[2]
-        set -l rest $argv[3..8]
+        set -l rest $argv[3..1024]
         set -l ev "_subcommand_event_"$prefix"_$sub"
         if set -q $ev
             eval "emit $$ev $rest"
