@@ -18,22 +18,22 @@ function __fd2_define_subcommand -d "create a command prefix impl"
     end
 
     if test -z $prefix_name
-      error "prefix must be set (use the -p option)" >&2
+      echo "prefix must be set (use the -p option)" >&2
       return 1
     end
 
     if test -z $summary
-      error "description must be set (use the -d option)" >&2
+      echo "description must be set (use the -d option)" >&2
       return 1
     end
 
     if test -z $function_name
-      error "function name must be set (use the -f option)" >&2
+      echo "function name must be set (use the -f option)" >&2
       return 1
     end
 
     if test -z $command_name
-      error "command name must be set (use the -c option)" >&2
+      echo "command name must be set (use the -c option)" >&2
       return 1
     end
 
