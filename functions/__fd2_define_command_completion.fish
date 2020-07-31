@@ -6,7 +6,7 @@ function __fd2_define_command_completion
         switch $key
             case p prefix
                 set prefix $value
-            case d desc
+            case d description
                 set description $value
         end
     end

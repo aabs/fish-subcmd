@@ -2,22 +2,22 @@ function fd2_define_subcommand -d "create a command prefix"
     set -l command_name ''
     set -l function_name ''
     set -l prefix ''
-    set -l desc ''
+    set -l description ''
 
     getopts $argv | while read -l key value
         switch $key
             case p prefix
-                set prefix_name $value
+                set prefix $value
             case c command_name
                 set command_name $value
             case f function_name
                 set function_name $value
-            case d desc
+            case d description
                 set description $value
         end
     end
 
-    if test -z $prefix_name
+    if test -z $prefix
       echo "prefix must be set (use the -p option)" >&2
       return 1
     end
@@ -37,8 +37,8 @@ function fd2_define_subcommand -d "create a command prefix"
       return 1
     end
 
-  echo fd2_define_subcommand $prefix_name $command_name >&2
-  __fd2_define_subcommand -p $prefix_name -c $command_name -f $function_name -d $description
-  __fd2_define_subcommand_completion -p $prefix_name -c $command_name -d $description
+  echo fd2_define_subcommand $prefix $command_name >&2
+  __fd2_define_subcommand -p $prefix -c $command_name -f $function_name -d $description
+  __fd2_define_subcommand_completion -p $prefix -c $command_name -d $description
 end
 

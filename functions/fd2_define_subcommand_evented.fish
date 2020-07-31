@@ -1,23 +1,23 @@
-function fd2_define_subcmd_evented -d "create a command prefix"
+function fd2_define_subcommand_evented -d "create a command prefix"
     set -l command_name ''
     set -l event_name ''
     set -l prefix ''
-    set -l desc ''
+    set -l description ''
 
     getopts $argv | while read -l key value
         switch $key
             case p prefix
-                set prefix_name $value
+                set prefix $value
             case c command_name
                 set command_name $value
             case e event_name
                 set event_name $value
-            case d desc
+            case d description
                 set description $value
         end
     end
 
-    if test -z $prefix_name
+    if test -z $prefix
       echo "prefix must be set (use the -p option)" >&2
       return 1
     end
@@ -37,7 +37,7 @@ function fd2_define_subcmd_evented -d "create a command prefix"
       return 1
     end
 
-  echo fd2_define_subcmd_evented a prefix: $prefix_name subcmd: $command_name event: $event_name
-  __fd2_define_subcommand_evented -p $prefix_name -c $command_name -e $event_name -d $description
-  __fd2_define_subcommand_completion  -p $prefix_name -c $command_name -d $description
+  echo fd2_define_subcmd_evented a prefix: $prefix subcmd: $command_name event: $event_name
+  __fd2_define_subcommand_evented -p $prefix -c $command_name -e $event_name -d $description
+  __fd2_define_subcommand_completion  -p $prefix -c $command_name -d $description
 end

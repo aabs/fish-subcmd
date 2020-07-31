@@ -2,27 +2,27 @@ function __fd2_define_subcommand -d "create a command prefix impl"
     set -l command_name ''
     set -l function_name ''
     set -l prefix ''
-    set -l desc ''
+    set -l description ''
 
     getopts $argv | while read -l key value
         switch $key
             case p prefix
-                set prefix_name $value
+                set prefix $value
             case c command_name
                 set command_name $value
             case f function_name
                 set function_name $value
-            case d desc
-                set summary $value
+            case d description
+                set description $value
         end
     end
 
-    if test -z $prefix_name
+    if test -z $prefix
       echo "prefix must be set (use the -p option)" >&2
       return 1
     end
 
-    if test -z $summary
+    if test -z $description
       echo "description must be set (use the -d option)" >&2
       return 1
     end
@@ -37,13 +37,13 @@ function __fd2_define_subcommand -d "create a command prefix impl"
       return 1
     end
 
-    # erase definitions for event and summary
-    eval "set -e _subcommand_function_"$prefix_name"_"$command_name
-    eval "set -e _subcommand_summary_"$prefix_name"_"$command_name
+    # erase definitions for event and description
+    eval "set -e _subcommand_function_"$prefix"_"$command_name
+    eval "set -e _subcommand_summary_"$prefix"_"$command_name
 
-    set -l x "_subcommand_names_$prefix_name"
+    set -l x "_subcommand_names_$prefix"
     eval "set -U $x \$$x $command_name"
-    eval "set -U _subcommand_function_"$prefix_name"_"$command_name" '$function_name'"
-    eval "set -U _subcommand_summary_"$prefix_name"_"$command_name" '$summary'"
+    eval "set -U _subcommand_function_"$prefix"_"$command_name" '$function_name'"
+    eval "set -U _subcommand_summary_"$prefix"_"$command_name" '$description'"
 end
 
