@@ -2,8 +2,6 @@ function __fd2_define_command_completion
     set -l prefix ''
     set -l description ''
 
-    fd2_echo __fd2_define_command_completion $prefix >&2
-
     getopts $argv | while read -l key value
         switch $key
             case p prefix
@@ -20,6 +18,8 @@ function __fd2_define_command_completion
       echo "description must be set (use the -d option)" >&2
       return 1
     end
+
+    fd2_echo __fd2_define_command_completion $prefix >&2
 
     complete -x -c "$prefix" -d "$description"
 end
