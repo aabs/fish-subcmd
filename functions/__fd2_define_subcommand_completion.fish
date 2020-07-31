@@ -29,6 +29,8 @@ function __fd2_define_subcommand_completion -a prefix subcmd summary
       return 1
     end
 
+    fd2_echo "__fd2_define_subcommand_completion $prefix $subcmd" >&2
+
     complete -x -c "$prefix" -a "$command_name" -d "$summary"
 end
 
