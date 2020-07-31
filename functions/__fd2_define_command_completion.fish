@@ -1,8 +1,8 @@
-function __fd2_define_command_completion -a prefix description
+function __fd2_define_command_completion 
     set -l prefix ''
     set -l description ''
 
-    echo fd2_define_command $prefix >&2
+    fd2_echo __fd2_define_command_completion $prefix >&2
 
     getopts $argv | while read -l key value
         switch $key

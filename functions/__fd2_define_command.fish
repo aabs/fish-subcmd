@@ -2,7 +2,7 @@ function __fd2_define_command -d "create a command prefix"
     set -l prefix ''
     set -l desc ''
 
-    echo fd2_define_command $prefix >&2
+    echo __fd2_define_command $prefix >&2
 
     getopts $argv | while read -l key value
         switch $key

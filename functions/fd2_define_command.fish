@@ -24,8 +24,8 @@ function fd2_define_command -d "create a command prefix"
 
 
     echo fd2_define_command $prefix
-    __fd2_define_command $prefix $desc
-    __fd2_define_command_completion $prefix $desc
+    __fd2_define_command -p $prefix -d $desc
+    __fd2_define_command_completion -p $prefix -d $desc
     __fd2_define_command_dispatcher $prefix
 
     __fd2_define_help_subcommand $prefix
