@@ -18,26 +18,26 @@ function fd2_define_subcommand -d "create a command prefix"
     end
 
     if test -z $prefix
-      echo "prefix must be set (use the -p option)" >&2
+      error "prefix must be set (use the -p option)" >&2
       return 1
     end
 
     if test -z $description
-      echo "description must be set (use the -d option)" >&2
+      error "description must be set (use the -d option)" >&2
       return 1
     end
 
     if test -z $function_name
-      echo "function name must be set (use the -f option)" >&2
+      error "function name must be set (use the -f option)" >&2
       return 1
     end
 
     if test -z $command_name
-      echo "command name must be set (use the -c option)" >&2
+      error "command name must be set (use the -c option)" >&2
       return 1
     end
 
-  echo fd2_define_subcommand $prefix $command_name >&2
+  trace fd2_define_subcommand $prefix $command_name >&2
   __fd2_define_subcommand -p $prefix -c $command_name -f $function_name -d $description
   __fd2_define_subcommand_completion -p $prefix -c $command_name -d $description
 end

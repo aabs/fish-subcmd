@@ -18,22 +18,22 @@ function __fd2_define_subcommand_evented -d "create a command prefix impl"
     end
 
     if test -z $prefix
-      echo "prefix must be set (use the -p option)" >&2
+      error "prefix must be set (use the -p option)" >&2
       return 1
     end
 
     if test -z $description
-      echo "description must be set (use the -d option)" >&2
+      error "description must be set (use the -d option)" >&2
       return 1
     end
 
     if test -z $event_name
-      echo "event name must be set (use the -e option)" >&2
+      error "event name must be set (use the -e option)" >&2
       return 1
     end
 
     if test -z $command_name
-      echo "command name must be set (use the -c option)" >&2
+      error "command name must be set (use the -c option)" >&2
       return 1
     end
 

@@ -11,15 +11,15 @@ function __fd2_define_command_completion
         end
     end
     if test -z $prefix
-      echo "prefix must be set (use the -p option)" >&2
+      error "prefix must be set (use the -p option)" >&2
       return 1
     end
     if test -z $description
-      echo "description must be set (use the -d option)" >&2
+      error "description must be set (use the -d option)" >&2
       return 1
     end
 
-    fd2_echo __fd2_define_command_completion $prefix >&2
+    trace __fd2_define_command_completion $prefix >&2
 
     complete -x -c "$prefix" -d "$description"
 end
