@@ -1,23 +1,22 @@
 function fd2_define_command -d "create a command prefix"
 
-    set -l prefix ''
-    set -l desc ''
+    set prefix ''
+    set desc ''
 
-    getopts $argv | while read -l key value
-        switch $key
-            case p prefix
-                set prefix $value
-            case d desc
-                set desc $value
-        end
+    argparse 'p/=+' 'd/=+' -- $argv
+
+    if test -z $_flag_p
+        error "__fd2_define_command: prefix must be set (use the -p option)" >&2
+        return 1
+    else
+        set prefix $_flag_p
     end
-    if test -z $prefix
-      error "prefix must be set (use the -p option)" >&2
-      return 1
-    end
-    if test -z $desc
-      error "description must be set (use the -d option)" >&2
-      return 1
+
+    if test -z $_flag_d
+        error "__fd2_define_command: desc must be set (use the -d option)" >&2
+        return 1
+    else
+        set desc $_flag_d
     end
 
 
