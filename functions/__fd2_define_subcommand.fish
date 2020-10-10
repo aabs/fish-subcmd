@@ -25,11 +25,11 @@ function __fd2_define_subcommand -d "create a command prefix impl"
         set description $_flag_d
     end
     set function_name ''
-    if test -z $_flag_e
+    if test -z $_flag_f
         error "__fd2_define_subcommand: function_name must be set (use the -e option)" >&2
         return 1
     else
-        set function_name $_flag_e
+        set function_name $_flag_f
     end
 
     # erase definitions for event and description
