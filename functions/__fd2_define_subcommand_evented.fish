@@ -1,40 +1,35 @@
 function __fd2_define_subcommand_evented -d "create a command prefix impl"
-    set -l command_name ''
-    set -l event_name ''
-    set -l prefix ''
-    set -l description ''
+    argparse 'c/=+' 'p/=+' 'd/=+' 'e/=+' -- $argv
 
-    getopts $argv | while read -l key value
-        switch $key
-            case p prefix
-                set prefix $value
-            case c command_name
-                set command_name $value
-            case e event_name
-                set event_name $value
-            case d description
-                set description $value
-        end
+    set command_name ''
+    if test -z $_flag_c
+        error "__fd2_define_subcommand_evented: command_name must be set (use the -c option)" >&2
+        return 1
+    else
+        set command_name $_flag_c
     end
 
-    if test -z $prefix
-      error "prefix must be set (use the -p option)" >&2
-      return 1
+    set prefix ''
+    if test -z $_flag_p
+        error "__fd2_define_subcommand_evented: prefix must be set (use the -p option)" >&2
+        return 1
+    else
+        set prefix $_flag_p
     end
 
-    if test -z $description
-      error "description must be set (use the -d option)" >&2
-      return 1
+    set description ''
+    if test -z $_flag_d
+        error "__fd2_define_subcommand_evented: description must be set (use the -d option)" >&2
+        return 1
+    else
+        set description $_flag_d
     end
-
-    if test -z $event_name
-      error "event name must be set (use the -e option)" >&2
-      return 1
-    end
-
-    if test -z $command_name
-      error "command name must be set (use the -c option)" >&2
-      return 1
+    set event_name ''
+    if test -z $_flag_e
+        error "__fd2_define_subcommand_evented: event_name must be set (use the -e option)" >&2
+        return 1
+    else
+        set event_name $_flag_e
     end
 
     # erase definitions for event and summary

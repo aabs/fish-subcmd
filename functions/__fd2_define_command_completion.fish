@@ -1,23 +1,23 @@
 function __fd2_define_command_completion 
-    set -l prefix ''
-    set -l description ''
+    argparse 'p/=+' 'd/=+' -- $argv
 
-    getopts $argv | while read -l key value
-        switch $key
-            case p prefix
-                set prefix $value
-            case d description
-                set description $value
-        end
+    set prefix ''
+    if test -z $_flag_p
+        error "__fd2_define_command_completion: prefix must be set (use the -p option)" >&2
+        return 1
+    else
+        set prefix $_flag_p
     end
-    if test -z $prefix
-      error "prefix must be set (use the -p option)" >&2
-      return 1
+
+    set description ''
+    if test -z $_flag_d
+        error "__fd2_define_command_completion: description must be set (use the -d option)" >&2
+        return 1
+    else
+        set description $_flag_d
     end
-    if test -z $description
-      error "description must be set (use the -d option)" >&2
-      return 1
-    end
+
+
 
     trace __fd2_define_command_completion $prefix >&2
 

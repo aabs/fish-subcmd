@@ -1,10 +1,7 @@
 function fd2_define_command -d "create a command prefix"
-
-    set prefix ''
-    set desc ''
-
     argparse 'p/=+' 'd/=+' -- $argv
 
+    set prefix ''
     if test -z $_flag_p
         error "__fd2_define_command: prefix must be set (use the -p option)" >&2
         return 1
@@ -12,6 +9,7 @@ function fd2_define_command -d "create a command prefix"
         set prefix $_flag_p
     end
 
+    set desc ''
     if test -z $_flag_d
         error "__fd2_define_command: desc must be set (use the -d option)" >&2
         return 1
